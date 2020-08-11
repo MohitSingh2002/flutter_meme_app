@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meme_app/home_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,13 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Text(
-            "Hello Flutter!",
-          ),
-        ),
-      ),
+      body: HomePage(),
     );
   }
 }
