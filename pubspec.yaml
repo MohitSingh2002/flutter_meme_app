@@ -25,6 +25,7 @@ dependencies:
     sdk: flutter
   http: ^0.12.2
   flutter_staggered_grid_view:
+  flutter_spinkit:
 
 
   # The following adds the Cupertino Icons font to your application.
