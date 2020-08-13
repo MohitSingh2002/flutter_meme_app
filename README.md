@@ -7,6 +7,8 @@ A new Flutter application.
 This app is made for generation of memes for Social Media.
 Create cool memes and share on Social Media on a go.
 
+# Contributors are welcome
+
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
