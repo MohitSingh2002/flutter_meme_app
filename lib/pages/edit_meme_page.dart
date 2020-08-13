@@ -63,9 +63,9 @@ class _EditMemePageState extends State<EditMemePage> {
       bottomNavigationBar: RaisedButton(
         onPressed: () {
           EditMemePageHelper editMemePageHelper = new EditMemePageHelper(text: "Singh", color: Colors.yellow);
-          list.add(editMemePageHelper);
-          print(list);
-          getList();
+          setState(() {
+            list.add(editMemePageHelper);
+          });
         },
         splashColor: Colors.blue,
         color: Colors.deepPurple,
