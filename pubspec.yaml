@@ -26,6 +26,8 @@ dependencies:
   http: ^0.12.2
   flutter_staggered_grid_view:
   flutter_spinkit:
+  image_picker_saver: ^0.3.0
+  toast:
 
 
   # The following adds the Cupertino Icons font to your application.

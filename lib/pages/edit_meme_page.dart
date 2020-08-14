@@ -1,5 +1,14 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:meme_app/helper/edit_meme_page_helper.dart';
+import 'package:meme_app/helper/text_widget_container.dart';
+import 'dart:ui' as ui;
+import 'package:image_picker_saver/image_picker_saver.dart';
+import 'package:toast/toast.dart';
 
 class EditMemePage extends StatefulWidget {
 
@@ -14,7 +23,20 @@ class EditMemePage extends StatefulWidget {
 
 class _EditMemePageState extends State<EditMemePage> {
 
-  List<EditMemePageHelper> list = List<EditMemePageHelper>();
+  static GlobalKey screenshotKey = new GlobalKey();
+
+  List<Widget> list = List<Widget>();
+
+  void _takeScreenShot() async {
+    RenderRepaintBoundary boundary =
+    screenshotKey.currentContext.findRenderObject();
+    ui.Image image = await boundary.toImage();
+    ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+    Uint8List pngBytes = byteData.buffer.asUint8List();
+    print(pngBytes);
+    var filePath = await ImagePickerSaver.saveFile(fileData: pngBytes);
+    print(filePath);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,26 +51,35 @@ class _EditMemePageState extends State<EditMemePage> {
             icon: Icon(Icons.share),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              _takeScreenShot();
+              Toast.show("Image saved in gallery", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
+//              screenshotController.capture().then((File image) async {
+//                await ImageGallerySaver.saveImage(image.readAsBytesSync());
+//                print("SAVED");
+//              });
+            },
             icon: Icon(Icons.save_alt),
           ),
         ],
       ),
-      body: SafeArea(
-        child: Stack(
+      body: RepaintBoundary(
+        key: screenshotKey,
+        child: SafeArea(
+          child: Stack(
 //          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Container(
-              height: MediaQuery.of(context).size.height*0.7,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(widget.memeUrl),
+            children: <Widget>[
+              Container(
+                height: MediaQuery.of(context).size.height*0.7,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(widget.memeUrl),
+                  ),
                 ),
               ),
-            ),
-            //The below code is just for testing of drag widget.
-            //InteractiveViewer is a new widget in latest version of Flutter i.e. 1.20.0.
+              //The below code is just for testing of drag widget.
+              //InteractiveViewer is a new widget in latest version of Flutter i.e. 1.20.0.
 //            InteractiveViewer(
 //              boundaryMargin: EdgeInsets.symmetric(
 //                vertical: double.infinity,
@@ -56,16 +87,21 @@ class _EditMemePageState extends State<EditMemePage> {
 //              ),
 //              child: Text("Hello",style: TextStyle(color: Colors.yellow),),
 //            ),
-            getList(),
-          ],
+              getList(),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: RaisedButton(
         onPressed: () {
-          EditMemePageHelper editMemePageHelper = new EditMemePageHelper(text: "Singh", color: Colors.yellow);
-          setState(() {
-            list.add(editMemePageHelper);
-          });
+//          EditMemePageHelper editMemePageHelper = new EditMemePageHelper(text: "Singh", color: Colors.yellow);
+//          setState(() {
+//            list.add(editMemePageHelper);
+//          });
+        setState(() {
+          list.add(TextWidgetContainer());
+//          list.add(Text("Hello", style: TextStyle(color: Colors.blue, fontSize: 30,),));
+        });
         },
         splashColor: Colors.blue,
         color: Colors.deepPurple,
@@ -87,11 +123,18 @@ class _EditMemePageState extends State<EditMemePage> {
       physics: NeverScrollableScrollPhysics(),
       itemCount: list.length,
       itemBuilder: (_, index) {
-        return InteractiveViewer(child: Text(list.elementAt(index).text, style: TextStyle(color: list.elementAt(index).color, fontSize: 30,),),
+        return InteractiveViewer(child: list.elementAt(index),
         boundaryMargin: EdgeInsets.symmetric(
           vertical: double.infinity,
           horizontal: double.infinity,
-        ),);
+        ),
+        );
+//        return InteractiveViewer(child: Text(list.elementAt(index).text, style: TextStyle(color: list.elementAt(index).color, fontSize: 30,),),
+//        boundaryMargin: EdgeInsets.symmetric(
+//          vertical: double.infinity,
+//          horizontal: double.infinity,
+//        ),
+//        );
       },
     );
   }
