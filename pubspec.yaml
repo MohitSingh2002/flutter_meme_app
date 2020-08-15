@@ -28,6 +28,8 @@ dependencies:
   flutter_spinkit:
   image_picker_saver: ^0.3.0
   toast:
+  flutter_colorpicker:
+  font_awesome_flutter:
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
         shadowColor: Colors.white,
         centerTitle: true,
         title: Text(
-          "Meme App",
+          "Memespam",
         ),
       ),
       body: SafeArea(
