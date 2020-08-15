@@ -30,6 +30,7 @@ dependencies:
   toast:
   flutter_colorpicker:
   font_awesome_flutter:
+  file_picker:
 
 
   # The following adds the Cupertino Icons font to your application.

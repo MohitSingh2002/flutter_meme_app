@@ -4,7 +4,6 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:meme_app/helper/edit_meme_page_helper.dart';
 import 'package:meme_app/helper/text_widget_container.dart';
 import 'dart:ui' as ui;
 import 'package:image_picker_saver/image_picker_saver.dart';
@@ -14,8 +13,9 @@ class EditMemePage extends StatefulWidget {
 
   final String memeUrl;
   final String memeName;
+  final File memeImage;
 
-  EditMemePage({this.memeUrl, this.memeName});
+  EditMemePage({this.memeUrl, this.memeName, this.memeImage});
 
   @override
   _EditMemePageState createState() => _EditMemePageState();
@@ -74,7 +74,7 @@ class _EditMemePageState extends State<EditMemePage> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: NetworkImage(widget.memeUrl),
+                    image: widget.memeUrl != "" ? NetworkImage(widget.memeUrl) : FileImage(widget.memeImage),
                   ),
                 ),
               ),

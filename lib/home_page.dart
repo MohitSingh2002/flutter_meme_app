@@ -1,7 +1,11 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:meme_app/models/images_helper.dart';
 import 'package:meme_app/models/meme_service.dart';
 import 'package:meme_app/pages/edit_meme_page.dart';
@@ -15,9 +19,44 @@ class _HomePageState extends State<HomePage> {
 
   MemeService memeService = MemeService();
 
+  void getImage() async {
+    File file = await FilePicker.getFile();
+    Navigator.push(context, MaterialPageRoute(builder: (context) => EditMemePage(
+      memeUrl: "",
+      memeName: "Image from gallery",
+      memeImage: file,
+    )));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 10,
+            ),
+            ListTile(
+              title: Text(
+                "Memespam",
+              ),
+            ),
+            Divider(
+              color: Colors.white,
+            ),
+            ListTile(
+              onTap: () {
+                getImage();
+              },
+              leading: Icon(FontAwesomeIcons.image),
+              title: Text(
+                "Pick from gallery",
+              ),
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
         shadowColor: Colors.white,
