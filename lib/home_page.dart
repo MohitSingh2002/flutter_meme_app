@@ -9,6 +9,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:meme_app/models/images_helper.dart';
 import 'package:meme_app/models/meme_service.dart';
 import 'package:meme_app/pages/edit_meme_page.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -28,6 +29,14 @@ class _HomePageState extends State<HomePage> {
     )));
   }
 
+  void sendEmail() async {
+    final Email email = Email(
+      recipients: ['mohitdevelopersingh11082002@gmail.com'],
+      isHTML: false,
+    );
+    await FlutterEmailSender.send(email);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +49,10 @@ class _HomePageState extends State<HomePage> {
             ListTile(
               title: Text(
                 "Memespam",
+                style: TextStyle(
+                  fontSize: 30,
+                  fontFamily: "Roboto",
+                ),
               ),
             ),
             Divider(
@@ -52,6 +65,18 @@ class _HomePageState extends State<HomePage> {
               leading: Icon(FontAwesomeIcons.image),
               title: Text(
                 "Pick from gallery",
+              ),
+            ),
+            ListTile(
+              onTap: () {
+                sendEmail();
+              },
+              leading: Icon(FontAwesomeIcons.userAlt),
+              title: Text(
+                "Contact us",
+              ),
+              subtitle: Text(
+                "Questions?Need help?",
               ),
             ),
           ],
@@ -103,7 +128,13 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                             ),
-                            Text(snapshot.data[index].name),
+                            Text(
+                                snapshot.data[index].name,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "Roboto",
+                              ),
+                            ),
                           ],
                         ),
                       ),

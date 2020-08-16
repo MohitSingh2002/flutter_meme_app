@@ -100,13 +100,6 @@ class _TextWidgetContainerState extends State<TextWidgetContainer> {
                                     ),
                                   ],
                                 ),
-//                                Text(
-//                                  "Memespam",
-//                                  style: TextStyle(
-//                                    color: Colors.white,
-//                                    fontSize: textFontSize.toDouble(),
-//                                  ),
-//                                ),
                                 Row(
                                   children: <Widget>[
                                     FlatButton(onPressed: () {
@@ -127,31 +120,6 @@ class _TextWidgetContainerState extends State<TextWidgetContainer> {
                     );
                   },
                 ),
-//                suffixIcon: Icon(Icons.sort, color: Colors.red,),
-//                suffix: FlatButton(
-//                  onPressed: () {
-//                    showDialog(
-//                      context: context,
-//                      builder: (context) => AlertDialog(
-//                        title: Text("Choose custom fields"),
-//                        actions: <Widget>[
-//                          SingleChildScrollView(
-//                            child: Column(
-//                              mainAxisSize: MainAxisSize.min,
-//                              children: <Widget>[
-//                                Center(
-//                                  child: Text(
-//                                    "Choose Colour",
-//                                  ),
-//                                ),
-//                              ],
-//                            ),
-//                          ),
-//                        ],
-//                      )
-//                    );
-//                  },
-//                ),
               ),
               controller: textEditingController,
               onSubmitted: (val) {
@@ -169,11 +137,6 @@ class _TextWidgetContainerState extends State<TextWidgetContainer> {
               fontSize: textFontSize.toDouble(),
             ),
           ),
-//          Checkbox(value: value, onChanged: (val) {
-//            setState(() {
-//              value = !value;
-//            });
-//          }),
         ],
       ),
     );

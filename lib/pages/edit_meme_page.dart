@@ -46,18 +46,14 @@ class _EditMemePageState extends State<EditMemePage> {
         shadowColor: Colors.white,
         title: Text(widget.memeName),
         actions: <Widget>[
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.share),
-          ),
+//          IconButton(
+//            onPressed: () {},
+//            icon: Icon(Icons.share),
+//          ),
           IconButton(
             onPressed: () {
               _takeScreenShot();
               Toast.show("Image saved in gallery", context, duration: Toast.LENGTH_LONG, gravity: Toast.CENTER);
-//              screenshotController.capture().then((File image) async {
-//                await ImageGallerySaver.saveImage(image.readAsBytesSync());
-//                print("SAVED");
-//              });
             },
             icon: Icon(Icons.save_alt),
           ),
@@ -67,7 +63,6 @@ class _EditMemePageState extends State<EditMemePage> {
         key: screenshotKey,
         child: SafeArea(
           child: Stack(
-//          mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Container(
                 height: MediaQuery.of(context).size.height*0.7,
@@ -78,15 +73,6 @@ class _EditMemePageState extends State<EditMemePage> {
                   ),
                 ),
               ),
-              //The below code is just for testing of drag widget.
-              //InteractiveViewer is a new widget in latest version of Flutter i.e. 1.20.0.
-//            InteractiveViewer(
-//              boundaryMargin: EdgeInsets.symmetric(
-//                vertical: double.infinity,
-//                horizontal: double.infinity,
-//              ),
-//              child: Text("Hello",style: TextStyle(color: Colors.yellow),),
-//            ),
               getList(),
             ],
           ),
@@ -94,13 +80,8 @@ class _EditMemePageState extends State<EditMemePage> {
       ),
       bottomNavigationBar: RaisedButton(
         onPressed: () {
-//          EditMemePageHelper editMemePageHelper = new EditMemePageHelper(text: "Singh", color: Colors.yellow);
-//          setState(() {
-//            list.add(editMemePageHelper);
-//          });
         setState(() {
           list.add(TextWidgetContainer());
-//          list.add(Text("Hello", style: TextStyle(color: Colors.blue, fontSize: 30,),));
         });
         },
         splashColor: Colors.blue,
@@ -110,6 +91,8 @@ class _EditMemePageState extends State<EditMemePage> {
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(10),
             topRight: Radius.circular(10),
+            bottomLeft: Radius.circular(10),
+            bottomRight: Radius.circular(10),
           ),
         ),
       ),
@@ -129,12 +112,6 @@ class _EditMemePageState extends State<EditMemePage> {
           horizontal: double.infinity,
         ),
         );
-//        return InteractiveViewer(child: Text(list.elementAt(index).text, style: TextStyle(color: list.elementAt(index).color, fontSize: 30,),),
-//        boundaryMargin: EdgeInsets.symmetric(
-//          vertical: double.infinity,
-//          horizontal: double.infinity,
-//        ),
-//        );
       },
     );
   }

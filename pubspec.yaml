@@ -31,6 +31,8 @@ dependencies:
   flutter_colorpicker:
   font_awesome_flutter:
   file_picker:
+  flutter_email_sender:
+  awesome_dialog:
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -53,8 +55,10 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+#  assets:
+#  - images/a.jpg
+#  - images/b.jpg
+#  - images/c.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -68,10 +72,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+  - family: Roboto
+    fonts:
+    - asset: fonts/Roboto-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
