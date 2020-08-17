@@ -4,6 +4,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:meme_app/home_page.dart';
+import 'package:splashscreen/splashscreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +17,42 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: MyHomePage(),
+      home: Splashscreen(),
+    );
+  }
+}
+
+class Splashscreen extends StatefulWidget {
+  @override
+  _SplashscreenState createState() => _SplashscreenState();
+}
+
+class _SplashscreenState extends State<Splashscreen> {
+  @override
+  Widget build(BuildContext context) {
+    return SplashScreen(
+      seconds: 3,
+      navigateAfterSeconds: MyHomePage(),
+      title: Text(
+        "Memespam",
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+          fontSize: 40,
+          fontFamily: "Roboto",
+        ),
+      ),
+//      image: ,
+      backgroundColor: Colors.deepPurple,
+//      photoSize: ,
+      loadingText: Text(
+        "Loading...",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+        ),
+      ),
+      loaderColor: Colors.white,
     );
   }
 }
