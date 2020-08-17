@@ -19,24 +19,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-    testDevices: <String>[],
-    nonPersonalizedAds: true,
-    keywords: <String>['Flutter','Java'],
-  );
-
-  InterstitialAd _interstitialAd;
-
-  InterstitialAd createInterstitialAd() {
-    return InterstitialAd(
-        adUnitId: 'ca-app-pub-5876464688073365/9695568253',
-//        adUnitId: InterstitialAd.testAdUnitId,
-        targetingInfo: targetingInfo,
-        listener: (MobileAdEvent event) {
-          print("InterstitialAd : $event");
-        });
-  }
-
   MemeService memeService = MemeService();
 
   void getImage() async {
@@ -54,22 +36,6 @@ class _HomePageState extends State<HomePage> {
       isHTML: false,
     );
     await FlutterEmailSender.send(email);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    FirebaseAdMob.instance.initialize(
-//       appId: FirebaseAdMob.testAppId,
-       appId: 'ca-app-pub-5876464688073365~7260976605',
-    );
-  }
-
-  @override
-  void dispose() {
-//     _bannerAd.dispose();
-    _interstitialAd.dispose();
-    super.dispose();
   }
 
   @override
@@ -95,7 +61,6 @@ class _HomePageState extends State<HomePage> {
             ),
             ListTile(
               onTap: () {
-                createInterstitialAd()..load()..show();
                 getImage();
               },
               leading: Icon(FontAwesomeIcons.image),
@@ -138,7 +103,6 @@ class _HomePageState extends State<HomePage> {
                   return SingleChildScrollView(
                     child: GestureDetector(
                       onTap: () {
-                        createInterstitialAd()..load()..show();
                         Navigator.push(context, MaterialPageRoute(builder: (context) {
                           return EditMemePage(
                             memeUrl: snapshot.data[index].url,
